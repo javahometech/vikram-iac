@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+      table {
+        width: 80%;
+        margin: 30px auto;
+        border-collapse: collapse;
+      }
+      th {
+          text-align: left;
+      }
+      td {
+        padding: 10px;
+        border: 1px solid #666;
+      }
+    </style>
+    </head>
+    <p>
+        Please review the following compliance report for your AWS accounts and
+        take
+        action as necessary.
+        You can also log into the WellSky AWS Auditing account through the AWS
+        Console via Okta to review the up-to-date compliance status of your AWS
+        accounts
+        If you have any questions please contact Team Igneous on MS Team or by
+        replying to this email.
+        Thank you.
+    </p>
+
+    {{#each AggregatorRules}}
+    <h2>Rule: {{this.rule}}</h2>
+    <h3>Severity:</h3>
+    <h3>Description: </h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ResourceId</th>
+                <th>ResourceType</th>
+                <th>AccountId</th>
+                <th>Region</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each this.resources}}
+            <tr>
+                <td>{{this.ResourceId}}</td>
+                <td>{{this.ResourceType}}</td>
+                <td>{{this.AccountId}}</td>
+                <td>{{this.AwsRegion}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{/each}}
+</html>
